@@ -1,0 +1,48 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Authorize your bot</title>
+    <link href="./css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            background-color: #282B30;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-size: 10em;
+        }
+        
+        p {
+            color: white;
+            text-shadow: 4px 4px #7289DA;
+        }
+    </style>
+</head>
+
+<div class="twf_simpleModal_overlay" style="display: none;"></div><div class="twf_overlay" style="display: none;"></div><body cz-shortcut-listen="true">
+
+    <p>PASTE YOUR<br>CLIENT ID</p>
+
+    <script type="text/javascript">
+        document.getElementsByTagName("body")[0].onpaste = function(e) {
+            var paste = e.clipboardData && e.clipboardData.getData ?
+                e.clipboardData.getData('text/plain') : // Standard
+                window.clipboardData && window.clipboardData.getData ?
+                window.clipboardData.getData('Text') : // MS
+                false;
+            if (paste) {
+                nums = paste.replace(/^\D+|\D+$/g, "");
+                if (nums.length != 18) {
+                    alert("Client IDs are 18 digits long, not the " + nums.length + " digits you gave in \"" + paste + "\"");
+                    return;
+                }
+                document.getElementsByTagName("p")[0].innerHTML = "LOADING...";
+                window.location = "https://discordapp.com/oauth2/authorize?scope=bot&client_id=" + nums;
+            }
+        };
+    </script>
+
+
+
+</body></html>
