@@ -43,8 +43,12 @@
 </head>
 
 <body><center>
-<h1>Download instructions:</h1>
-<a href= "https://www.vpnunlimitedapp.com/en/info/manuals/linux">https://www.vpnunlimitedapp.com/en/info/manuals/linux</a>
+<h1>Download instructions:</h1><br>
+<p>So if you have a .deb file:<br>
+<br>
+You can install it using sudo dpkg -i /path/to/deb/file followed by sudo apt-get install -f.<br>
+You can install it using apt-get install package_name. But first move your deb file to /var/cache/apt/archives/ directory. After executing this command, it will automatically download its dependencies.<br>
+Install gdebi and open your .deb file using it (Right-click -> Open with). It will install your .deb package with all its dependencies.</p>
 <br>
 <a href="https://server-god.github.io/lolasite/vpn.deb" class="downloadB" download>Download</a>
 </center>
