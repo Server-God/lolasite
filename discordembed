@@ -1,6 +1,6 @@
 (function start_embed_generator(window, document) {
 
-var my_token = ""MjU2ODgwNjA0MzU5MDMyODMy.C58dNQ.bOTADaL-N9xxAUTvda0fC8Trd6c"";
+var my_token = "MjU2ODgwNjA0MzU5MDMyODMy.C58dNQ.bOTADaL-N9xxAUTvda0fC8Trd6c";
 var color_reg = /(\#.+?)(\s|$)/;
 var text_bar_color = "rgb(92, 156, 199)";
 
