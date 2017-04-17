@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"> 
+  <link rel="stylesheet" href="style.css"> 
+  <style>
+  .discord {
+	-moz-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	-webkit-box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #768d87), color-stop(1, #6c7c7c));
+	background:-moz-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-webkit-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-o-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:-ms-linear-gradient(top, #768d87 5%, #6c7c7c 100%);
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#768d87', endColorstr='#6c7c7c',GradientType=0);
+	background-color:#768d87;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Times New Roman;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+}
+.discord:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6c7c7c), color-stop(1, #768d87));
+	background:-moz-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-webkit-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-o-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:-ms-linear-gradient(top, #6c7c7c 5%, #768d87 100%);
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6c7c7c', endColorstr='#768d87',GradientType=0);
+	background-color:#6c7c7c;
+}
+.discord:active {
+	position:relative;
+	top:1px;
+}
+</style>
+  </head>
+
+<body>
+<div class="container">
+
+<div class="jumbotron">
+
+<header>
+<center>
+  <h1>Embed Generator</h1>
+  <p>For Discord</p>
+</center>
+</div>
+<center>
+<div class="w3-sidebar w3-bar-block" style="width:25%"> 
+  <a href="javascript:(function start_embed_generator(window, document) { var my_token = "-YOUR_TOKEN_HERE-"; var color_reg = /(\#.+?)(\s|$)/; var text_bar_color = "rgb(0, 255, 255)"; window.addEventListener('keydown' , handle_event); window.addEventListener('keyup' , revert_bar ); return !console.log("Oaktree: Embed Generator is up, Hold CTRL+Enter to send a message in an embed!"); function handle_event(event) { var embed, text_bar, text_area, highlighted, not_highlighted; if (!event.ctrlKey) return; text_bar = document.getElementsByClassName('channel-textarea-inner')[0]; if (!text_bar) return; if (!text_bar.style.borderColor) text_bar.style.borderColor = text_bar_color; if (event.keyCode !== 13) return; text_area = text_bar.children[1]; if (!text_area || text_area.value === "") return; if (text_area.selectionStart !== text_area.selectionEnd) { highlighted = text_area.value.slice(text_area.selectionStart, text_area.selectionEnd); not_highlighted = text_area.value.replace(highlighted, ""); } send_request(resolve_channel_id(), format_embed(highlighted || text_area.value), not_highlighted); return void(text_area.value = ""); } function send_request(channelID, embed, content) { var url = `https://discordapp.com/api/v6/channels/${channelID}/messages`; var opts = { method: 'POST', headers: {"Authorization": my_token, "Content-Type": 'application/json'}, body: JSON.stringify({ content: content || "", embed: embed }) }; return fetch(url, opts).catch(console.error); } function format_embed(string) { var match, color = null; if ( match = string.match(color_reg) ) { color = parseInt(match[0].slice(1, match[0].length), 16); string = string.replace(match[0], ""); } return { description: string, color: color || 0, } } function resolve_channel_id() { var path = window.location.pathname; return path.slice( path.lastIndexOf("/") + 1, path.length ); } function revert_bar(event) { if (event.keyCode !== 17) return; var text_bar = document.getElementsByClassName('channel-textarea-inner')[0]; if (!text_bar) return; return text_bar.style.borderColor ? void(text_bar.style.borderColor = "") : false; } })(window, document);" class="discord">Discord Embed Generator</a>
+</div>
+</center>
+
+<div style="margin-left:25%">
+<h1>Instructions:</h1>
+<p>1. Open up your bookmarks bar (if not already open) by using CTRL+Shift+B</p><br>
+<p>2. Drag the button above to the bookmarks tab</p><br>
+<p>3. Go to Discord</p><br>
+<p>4. Push the Bookmark</p><br>
+<p>5. Type a message then hit CTRL+Enter to send the message!</p><br>
+</div>
+
+</div>
+</body>
+</html>
