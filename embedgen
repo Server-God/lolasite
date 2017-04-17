@@ -70,11 +70,79 @@
 <h1>Instructions:</h1>
 <p>1. Open up your bookmarks bar (if not already open) by using CTRL+Shift+B</p><br>
 <p>2. Drag the button above to the bookmarks tab</p><br>
-<p>3. Go to Discord</p><br>
-<p>4. Push the Bookmark</p><br>
-<p>5. Type a message then hit CTRL+Enter to send the message!</p><br>
-</div>
+<p>3. Edit the part of the button that says "-YOUR_TOKEN_HERE-" and put your token in there (leave the "" there)</p>
+<p>(its toward the front of the long string of code)</p><br>
+<p>4. Go to Discord</p><br>
+<p>5. Push the Bookmark</p><br>
+<p>6. Type a message then hit CTRL+Enter to send the message!</p><br>
+<br><br>
+<h2>This is the code that goes into the button:</h2>
+<code>
+javascript:(function start_embed_generator(window, document) {
 
+var my_token = "-YOUR_TOKEN_HERE-";
+var color_reg = /(\#.+?)(\s|$)/;
+var text_bar_color = "rgb(92, 156, 199)";
+
+window.addEventListener('keydown' , handle_event);
+window.addEventListener('keyup'   , revert_bar  );
+return !console.log("Embed generator up!");
+
+function handle_event(event) {
+    var embed, text_bar, text_area, highlighted, not_highlighted;
+    if (!event.ctrlKey) return;
+    text_bar = document.getElementsByClassName('channel-textarea-inner')[0];
+    if (!text_bar) return;
+    if (!text_bar.style.borderColor) text_bar.style.borderColor = text_bar_color;
+    if (event.keyCode !== 13) return;
+    text_area = text_bar.children[1];
+    if (!text_area || text_area.value === "") return;
+    if (text_area.selectionStart !== text_area.selectionEnd) {
+        highlighted = text_area.value.slice(text_area.selectionStart, text_area.selectionEnd);
+        not_highlighted = text_area.value.replace(highlighted, "");
+    }
+    send_request(resolve_channel_id(), format_embed(highlighted || text_area.value), not_highlighted);
+    return void(text_area.value = "");
+}
+
+function send_request(channelID, embed, content) {
+    var url = `https://discordapp.com/api/v6/channels/${channelID}/messages`;
+    var opts = {
+        method: 'POST',
+        headers: {"Authorization": my_token, "Content-Type": 'application/json'},
+        body: JSON.stringify({ content: content || "", embed: embed })
+    };
+    return fetch(url, opts).catch(console.error);
+}
+
+function format_embed(string) {
+    var match, color = null;
+    if ( match = string.match(color_reg) ) {
+        color = parseInt(match[0].slice(1, match[0].length), 16);
+        string = string.replace(match[0], "");
+    }
+        
+    return {
+        description: string,
+        color: color || 0,
+    }
+}
+
+function resolve_channel_id() {
+    var path = window.location.pathname;
+    return path.slice( path.lastIndexOf("/") + 1, path.length );
+}
+
+function revert_bar(event) {
+    if (event.keyCode !== 17) return;
+    var text_bar = document.getElementsByClassName('channel-textarea-inner')[0];
+    if (!text_bar) return;
+    return text_bar.style.borderColor ? void(text_bar.style.borderColor = "") : false;
+}
+
+})(window, document);
+</code>
+</div>
 </div>
 </body>
 </html>
